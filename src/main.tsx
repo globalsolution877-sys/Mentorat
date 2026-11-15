@@ -1,0 +1,13 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
+import { Layout } from './components/Layout'
+import { Home } from './pages/Home'
+import { Contact, Directory, InfoPage, ScholarshipDetail, Scholarships } from './pages/PublicPages'
+import { Account, AuthPage, Protected } from './pages/Account'
+import { Admin } from './pages/Admin'
+import { UserManagement } from './modules/users/UserManagement'
+import { StaffApplications } from './modules/applications/StaffApplications'
+import './styles.css'
+ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><BrowserRouter><AuthProvider><Routes><Route element={<Layout/>}><Route index element={<Home/>}/><Route path="a-propos" element={<InfoPage page="a-propos"/>}/><Route path="services" element={<InfoPage page="services"/>}/><Route path="etudier" element={<InfoPage page="etudier"/>}/><Route path="confidentialite" element={<InfoPage page="confidentialite"/>}/><Route path="bourses" element={<Scholarships/>}/><Route path="bourses/:slug" element={<ScholarshipDetail/>}/><Route path="destinations" element={<Directory type="countries"/>}/><Route path="universites" element={<Directory type="universities"/>}/><Route path="formations" element={<Directory type="trainings"/>}/><Route path="actualites" element={<Directory type="articles"/>}/><Route path="temoignages" element={<Directory type="testimonials"/>}/><Route path="contact" element={<Contact/>}/><Route path="connexion" element={<AuthPage mode="login"/>}/><Route path="inscription" element={<AuthPage mode="register"/>}/><Route path="mot-de-passe-oublie" element={<AuthPage mode="forgot"/>}/><Route path="nouveau-mot-de-passe" element={<AuthPage mode="update"/>}/><Route path="espace" element={<Protected><Account/></Protected>}/><Route path="admin" element={<Protected><Admin/></Protected>}/><Route path="admin/utilisateurs" element={<Protected><UserManagement/></Protected>}/><Route path="dossiers" element={<Protected><StaffApplications/></Protected>}/><Route path="*" element={<section className="container section"><h1>Page introuvable</h1><a href="/">Retour à l’accueil</a></section>}/></Route></Routes></AuthProvider></BrowserRouter></React.StrictMode>)
